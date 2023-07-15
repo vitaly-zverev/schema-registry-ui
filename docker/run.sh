@@ -30,7 +30,7 @@ PORT="${PORT:-8000}"
         echo "Enabling proxy."
         cat <<EOF >/tmp/Caddyfile
 
-http://localhost:8000 {
+http://*:8000 {
   root * /schema-registry-ui
   handle_path /api/schema-registry/* {
 	rewrite * {path}
