@@ -1,5 +1,5 @@
 0.0.0.0:8000
 tls internal
 
-root /schema-registry-ui
+root * /schema-registry-ui
 log stdout
