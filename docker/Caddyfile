@@ -1,3 +1,4 @@
-http://localhost:8000
-root * /schema-registry-ui
-log
+http://localhost:8000 {
+  root * /schema-registry-ui
+  log
+}
