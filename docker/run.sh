@@ -28,12 +28,18 @@ PORT="${PORT:-8000}"
     if echo $PROXY | egrep -sq "true|TRUE|y|Y|yes|YES|1" \
             && [[ ! -z "$SCHEMAREGISTRY_URL" ]]; then
         echo "Enabling proxy."
-        cat <<EOF >>/tmp/Caddyfile
+        cat <<EOF >/tmp/Caddyfile
 
-handle_path /api/schema-registry/* {
+http://localhost:8000 {
+  root * /schema-registry-ui
+  handle_path /api/schema-registry/* {
 	rewrite * {path}
 	reverse_proxy $SCHEMAREGISTRY_URL
-}        
+  }          
+  
+  file_server
+  log
+}
 
 EOF
         if echo "$RELATIVE_PROXY_URL" | egrep -sq "true|TRUE|y|Y|yes|YES|1"; then
