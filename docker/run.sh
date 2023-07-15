@@ -99,4 +99,7 @@ http://0.0.0.0:$PORT
 EOF
 } 1>&2
 
-exec /caddy/caddy -conf /tmp/Caddyfile -quiet
+## Caddy v.1 
+## exec /caddy/caddy -conf /tmp/Caddyfile -quiet
+## Caddy v.2 
+exec /caddy/caddy run --config /tmp/Caddyfile 
