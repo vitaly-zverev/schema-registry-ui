@@ -1,5 +1,5 @@
 FROM alpine
-MAINTAINER Marios Andreopoulos <marios@landoop.com>
+MAINTAINER Vitaly Zverev <vitaly.zverev@gmail.com>
 
 WORKDIR /
 # Add needed tools
@@ -7,7 +7,8 @@ RUN apk add --no-cache ca-certificates wget \
     && echo "progress = dot:giga" | tee /etc/wgetrc
 
 # Add and Setup Caddy webserver
-RUN wget "https://github.com/mholt/caddy/releases/download/v0.10.11/caddy_v0.10.11_linux_amd64.tar.gz" -O /caddy.tgz \
+### RUN wget "https://github.com/mholt/caddy/releases/download/v0.10.11/caddy_v0.10.11_linux_amd64.tar.gz" -O /caddy.tgz \
+RUN wget "https://github.com/caddyserver/caddy/releases/download/v2.6.4/caddy_2.6.4_linux_amd64.tar.gz" -O /caddy.tgz \
     && mkdir caddy \
     && tar xzf caddy.tgz -C /caddy --no-same-owner \
     && rm -f /caddy.tgz
