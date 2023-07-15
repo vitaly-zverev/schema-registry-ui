@@ -2,4 +2,4 @@
 tls internal
 
 root * /schema-registry-ui
-log output stdout
+log
