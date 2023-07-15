@@ -30,7 +30,7 @@ PORT="${PORT:-8000}"
         echo "Enabling proxy."
         cat <<EOF >>/tmp/Caddyfile
 proxy /api/schema-registry $SCHEMAREGISTRY_URL {
-    without /api/schema-registry
+#    without /api/schema-registry
     $INSECURE_PROXY
 }
 EOF
