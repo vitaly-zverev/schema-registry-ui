@@ -29,10 +29,12 @@ PORT="${PORT:-8000}"
             && [[ ! -z "$SCHEMAREGISTRY_URL" ]]; then
         echo "Enabling proxy."
         cat <<EOF >>/tmp/Caddyfile
-proxy /api/schema-registry $SCHEMAREGISTRY_URL {
-#    without /api/schema-registry
-    $INSECURE_PROXY
-}
+
+handle_path /api/schema-registry/* {
+	rewrite * {path}
+	reverse_proxy $SCHEMAREGISTRY_URL
+}        
+
 EOF
         if echo "$RELATIVE_PROXY_URL" | egrep -sq "true|TRUE|y|Y|yes|YES|1"; then
             SCHEMAREGISTRY_URL=api/schema-registry
