@@ -76,8 +76,9 @@ EOF
         cat <<EOF >/tmp/env.js
 var clusters = [
    {
-     NAME: "default",
-     SCHEMA_REGISTRY: "$SCHEMAREGISTRY_URL"
+     NAME: "default"
+     ,"access.control.allow.origin": ["*"]
+     ,SCHEMA_REGISTRY: "$SCHEMAREGISTRY_URL"
      $GLOBAL_SETTING
      $TRANSITIVE_SETTING
      $DELETION_SETTING
