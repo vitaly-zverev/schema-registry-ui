@@ -29,16 +29,16 @@ PORT="${PORT:-8000}"
             && [[ ! -z "$SCHEMAREGISTRY_URL" ]]; then
         echo "Enabling proxy."
         cat <<EOF >/tmp/Caddyfile
-
-http://*:8000 {
+:8000 {
   root * /schema-registry-ui
+  file_server
+  log
+ 
   handle_path /api/schema-registry/* {
 	rewrite * {path}
 	reverse_proxy $SCHEMAREGISTRY_URL
-  }          
+  }
   
-  file_server
-  log
 }
 
 EOF
@@ -77,7 +77,7 @@ EOF
 var clusters = [
    {
      NAME: "default"
-     ,"access.control.allow.origin": ["*"]
+     ,"access.control.allow.origin": "*"
      ,SCHEMA_REGISTRY: "$SCHEMAREGISTRY_URL"
      $GLOBAL_SETTING
      $TRANSITIVE_SETTING

@@ -1,3 +1,7 @@
+var cors = require('cors');
+//app.use(cors());
+//app.enableCors({ origin: "*" });
+
 var angular = require('angular');
 var angularAPP = angular.module('angularAPP');
 
